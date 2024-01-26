@@ -1,5 +1,7 @@
 package com.study_sphere.spring_backend;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,9 +26,9 @@ public class PostController {
         return new ResponseEntity<>(savedPost, HttpStatus.CREATED);	
 	}
 	
-//	@GetMapping
-//	public ResponseEntity<Post> getPost(@RequestBody Post post) {
-//		Post savedPost = postRepository.;
-//        return new ResponseEntity<>(savedPost, HttpStatus.CREATED);	
-//	}
+	@GetMapping
+    public ResponseEntity<List<Post>> getAllPosts() {
+        List<Post> posts = postRepository.findAll();
+        return new ResponseEntity<>(posts, HttpStatus.OK);
+    }
 }
