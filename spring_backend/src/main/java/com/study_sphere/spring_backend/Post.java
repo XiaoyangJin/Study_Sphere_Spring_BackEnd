@@ -2,12 +2,13 @@ package com.study_sphere.spring_backend;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Post {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //indicate that the database should automatically generate the ID.
 	private int post_id;
 	private String title;
 	private String summary;
