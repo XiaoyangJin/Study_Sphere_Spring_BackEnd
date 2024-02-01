@@ -16,6 +16,12 @@ public class Post {
 	public int getPost_id() {
 		return post_id;
 	}
+	
+	// No-argument constructor
+    public Post() {
+    }
+    
+    
 	public Post(int post_id, String title, String summary, String main_content) {
 		super();
 		this.post_id = post_id;
