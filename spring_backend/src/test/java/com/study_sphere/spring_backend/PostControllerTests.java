@@ -23,6 +23,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.hamcrest.Matchers.is;
@@ -39,6 +40,9 @@ class PostControllerTests {
 	
 	@MockBean
 	private PostRepository postRepository;
+	
+	@Autowired
+    private ObjectMapper objectMapper;
 
 	@Test
 	public void createPostTest() throws Exception {
@@ -85,6 +89,32 @@ class PostControllerTests {
 	            .andExpect(status().isNotFound());
 	}
 
+	@Test
+	public void updatePostTest_PostExists() throws Exception {
+	    int postId = 105;
+	    Post existingPost = new Post(postId, "Old Title", "Old Summary", "Old Content");
+	    Post updatedDetails = new Post(postId, "New Title", "New Summary", "New Content");
+	    given(postRepository.findById((long)postId)).willReturn(Optional.of(existingPost));
+	    given(postRepository.save(any(Post.class))).willReturn(updatedDetails);
+
+	    mockMvc.perform(put("/api/posts/{id}", postId)
+	            .contentType(MediaType.APPLICATION_JSON)
+	            .content(objectMapper.writeValueAsString(updatedDetails)))
+	            .andExpect(status().isOk())
+	            .andExpect(jsonPath("$.title").value(updatedDetails.getTitle()));
+	}
+
+	@Test
+	public void updatePostTest_PostNotFound() throws Exception {
+	    int postId = 106;
+	    Post updatedDetails = new Post(postId, "New Title", "New Summary", "New Content");
+	    given(postRepository.findById((long)postId)).willReturn(Optional.empty());
+
+	    mockMvc.perform(put("/api/posts/{id}", postId)
+	            .contentType(MediaType.APPLICATION_JSON)
+	            .content(objectMapper.writeValueAsString(updatedDetails)))
+	            .andExpect(status().isNotFound());
+	}
 
 
 }
