@@ -16,6 +16,13 @@ public class Post {
 	public int getPost_id() {
 		return post_id;
 	}
+	public Post(int post_id, String title, String summary, String main_content) {
+		super();
+		this.post_id = post_id;
+		this.title = title;
+		this.summary = summary;
+		this.main_content = main_content;
+	}
 	public void setPost_id(int post_id) {
 		this.post_id = post_id;
 	}
