@@ -1,4 +1,4 @@
-package com.study_sphere.spring_backend;
+package com.study_sphere.spring_backend.Post;
 
 import java.util.List;
 import java.util.Optional;

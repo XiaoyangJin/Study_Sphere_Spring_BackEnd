@@ -1,4 +1,4 @@
-package com.study_sphere.spring_backend;
+package com.study_sphere.spring_backend.Post;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

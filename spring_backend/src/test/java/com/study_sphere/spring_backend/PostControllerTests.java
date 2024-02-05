@@ -30,6 +30,9 @@ import static org.hamcrest.Matchers.is;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.study_sphere.spring_backend.Post.Post;
+import com.study_sphere.spring_backend.Post.PostController;
+import com.study_sphere.spring_backend.Post.PostRepository;
 
 
 @WebMvcTest(PostController.class)
