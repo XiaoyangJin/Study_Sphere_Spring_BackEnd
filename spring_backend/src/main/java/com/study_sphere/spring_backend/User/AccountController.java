@@ -18,29 +18,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api/users")
-public class UserController {
+@RequestMapping("/api/accounts")
+public class AccountController {
 	@Autowired
-	private UserRepository userRepository;
+	private AccountRepository accountRepository;
 	
 	@PostMapping
-	public ResponseEntity<User> createUser(@RequestBody User user) {
-		User savedUser = userRepository.save(user);
-        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);	
+	public ResponseEntity<Account> createAccount(@RequestBody Account account) {
+		Account savedAccount = accountRepository.save(account);
+        return new ResponseEntity<>(savedAccount, HttpStatus.CREATED);	
 	}
 	
 	@GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userRepository.findAll();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+    public ResponseEntity<List<Account>> getAllAccounts() {
+        List<Account> accounts = accountRepository.findAll();
+        return new ResponseEntity<>(accounts, HttpStatus.OK);
     }
 	
 	@DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        Optional<User> user = userRepository.findById(id);
+    public ResponseEntity<Void> deleteAccount(@PathVariable Long id) {
+        Optional<Account> account = accountRepository.findById(id);
 
-        if (user.isPresent()) {
-            userRepository.delete(user.get());
+        if (account.isPresent()) {
+        	accountRepository.delete(account.get());
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -48,15 +48,15 @@ public class UserController {
     }
 	
 	@PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails) {
-        return userRepository.findById(id)
-            .map(user -> {
+    public ResponseEntity<Account> updateAccount(@PathVariable Long id, @RequestBody Account accountDetails) {
+        return accountRepository.findById(id)
+            .map(account -> {
                 // Update the fields of 'user' using 'userDetails'
-                user.setUsername(userDetails.getUsername());
-                user.setPassword(userDetails.getPassword());
+            	account.setUsername(accountDetails.getUsername());
+            	account.setPassword(accountDetails.getPassword());
 
-                User updatedUser = userRepository.save(user);
-                return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+                Account updatedAccount = accountRepository.save(account);
+                return new ResponseEntity<>(updatedAccount, HttpStatus.OK);
             })
             .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }

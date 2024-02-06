@@ -6,23 +6,26 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class User {
+public class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int user_id;
+	private int account_id;
 	private String username;
 	private String password;
-	public User(int user_id, String username, String password) {
+	public Account(int user_id, String username, String password) {
 		super();
-		this.user_id = user_id;
+		this.account_id = user_id;
 		this.username = username;
 		this.password = password;
 	}
+	// No-argument constructor
+    public Account() {
+    }
 	public int getUser_id() {
-		return user_id;
+		return account_id;
 	}
 	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+		this.account_id = user_id;
 	}
 	public String getUsername() {
 		return username;
@@ -38,7 +41,7 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [user_id=" + user_id + ", username=" + username + ", password=" + password + "]";
+		return "User [user_id=" + account_id + ", username=" + username + ", password=" + password + "]";
 	}
 	
 }
