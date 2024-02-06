@@ -1,6 +1,5 @@
 package com.study_sphere.spring_backend;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 
 import static org.mockito.BDDMockito.given;
