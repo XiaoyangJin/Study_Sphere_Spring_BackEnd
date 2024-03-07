@@ -1,4 +1,4 @@
-package com.study_sphere.spring_backend.Post;
+package com.study_sphere.spring_backend;
 
 import static org.mockito.ArgumentMatchers.any;
 
