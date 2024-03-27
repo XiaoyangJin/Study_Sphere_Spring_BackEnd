@@ -9,7 +9,7 @@ Study Sphere is developed with a focus on providing a robust backend capable of 
 ### Tools and Environments
 
 - **Maven**: Used in the early stages of development, with Eclipse as the primary IDE.
-- **Gradle**: Chosen as the preferred build automation tool going forward, with development in IntelliJ IDEA.
+- **Gradle**: Chosen as the preferred build automation tool going forward, with development in IntelliJ IDEA. https://github.com/XiaoyangJin/Study_Sphere_Spring_BackEnd_Gradle
 
 ## Features
 
